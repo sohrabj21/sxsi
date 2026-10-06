@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SXSI</title>
+  <meta name="description" content="SXSI. A forthcoming hub for full service robots." />
+  <meta name="theme-color" content="#141311" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #141311;
+      --ink: #efeae2;
+      --muted: #8d877d;
+      --line: rgba(239, 234, 226, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    body {
+      min-height: 100dvh;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      display: grid;
+      place-items: center;
+      padding: 32px 28px 88px;
+    }
+
+    main {
+      width: min(720px, 100%);
+      text-align: left;
+    }
+
+    .mark {
+      margin: 0;
+      font-family: "Newsreader", "Iowan Old Style", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(72px, 16vw, 148px);
+      letter-spacing: -0.045em;
+      line-height: 0.86;
+    }
+
+    .soon {
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .note {
+      margin: 18px 0 0;
+      max-width: 28ch;
+      color: var(--muted);
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 17px;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1.45;
+      text-transform: none;
+    }
+
+    .rule {
+      width: 48px;
+      height: 1px;
+      margin: 28px 0 0;
+      background: var(--line);
+    }
+
+    .inquire {
+      position: fixed;
+      left: 28px;
+      bottom: 24px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .inquire span {
+      border-bottom: 1px solid transparent;
+    }
+
+    .inquire:hover,
+    .inquire:focus-visible {
+      color: var(--ink);
+    }
+
+    .inquire:hover span,
+    .inquire:focus-visible span {
+      border-bottom-color: var(--line);
+    }
+
+    @media (max-width: 520px) {
+      .inquire { left: 28px; right: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 class="mark">SXSI</h1>
+    <p class="soon">Coming soon</p>
+    <p class="note">A forthcoming hub for full service robots.</p>
+    <div class="rule" aria-hidden="true"></div>
+  </main>
+  <a class="inquire" href="mailto:SXSI123@protonmail.com?subject=SXSI%20inquiry">Inquiries <span>SXSI123@protonmail.com</span></a>
+</body>
+</html>
