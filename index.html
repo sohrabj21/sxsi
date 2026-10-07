@@ -32,7 +32,33 @@
       font-weight: 300;
       display: grid;
       place-items: center;
-      padding: 32px 28px 88px;
+      padding: 88px 28px 88px;
+    }
+
+    .ca {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 16px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      text-align: center;
+      word-break: break-all;
+    }
+
+    .ca span {
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-size: 10px;
+      flex: none;
     }
 
     .mark {
@@ -42,6 +68,7 @@
       font-size: clamp(88px, 18vw, 188px);
       letter-spacing: -0.035em;
       line-height: 0.86;
+      color: var(--ink);
     }
 
     .mark em {
@@ -76,11 +103,13 @@
     }
 
     @media (max-width: 520px) {
+      .ca { flex-direction: column; gap: 4px; padding: 12px 18px; }
       .inquire { left: 28px; right: 28px; }
     }
   </style>
 </head>
 <body>
+  <div class="ca"><span>CA</span> 8huY4Ktsf3Lxak9sV7gQtMjYbY6WfX5UZJkLPoL5pump</div>
   <h1 class="mark">SX<em>SI</em></h1>
   <a class="inquire" href="mailto:SXSI123@protonmail.com?subject=SXSI%20inquiry">Inquiries <span>SXSI123@protonmail.com</span></a>
 </body>
