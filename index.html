@@ -35,6 +35,14 @@
       padding: 32px 28px 88px;
     }
 
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 100%;
+    }
+
     .mark {
       margin: 0;
       font-family: "Bodoni Moda", "Didot", "Bodoni MT", serif;
@@ -48,6 +56,42 @@
       font-style: italic;
       font-weight: 400;
       margin-left: 0.06em;
+    }
+
+    .contract {
+      margin: 28px 0 0;
+      max-width: min(92vw, 640px);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      line-height: 1.5;
+    }
+
+    .contract button {
+      display: inline;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: none;
+      color: inherit;
+      font: inherit;
+      letter-spacing: inherit;
+      cursor: pointer;
+      word-break: break-all;
+    }
+
+    .contract button:hover,
+    .contract button:focus-visible {
+      color: var(--ink);
+    }
+
+    .contract .hint {
+      display: block;
+      margin-top: 8px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
     .inquire {
@@ -77,11 +121,32 @@
 
     @media (max-width: 520px) {
       .inquire { left: 28px; right: 28px; }
+      .contract { margin-top: 22px; font-size: 12px; }
     }
   </style>
 </head>
 <body>
-  <h1 class="mark">SX<em>SI</em></h1>
+  <div class="hero">
+    <h1 class="mark">SX<em>SI</em></h1>
+    <p class="contract">
+      <button type="button" id="ca" data-address="0x7b94914e3bdbae4a25603d5a297b98b4ef6e7c5a">0x7b94914e3bdbae4a25603d5a297b98b4ef6e7c5a</button>
+      <span class="hint" id="hint">Robinhood Chain · tap to copy</span>
+    </p>
+  </div>
   <a class="inquire" href="mailto:SXSI123@protonmail.com?subject=SXSI%20inquiry">Inquiries <span>SXSI123@protonmail.com</span></a>
+  <script>
+    const btn = document.getElementById("ca");
+    const hint = document.getElementById("hint");
+    btn.addEventListener("click", async () => {
+      const address = btn.dataset.address;
+      try {
+        await navigator.clipboard.writeText(address);
+        hint.textContent = "Copied";
+      } catch (err) {
+        hint.textContent = "Select and copy";
+      }
+      setTimeout(() => { hint.textContent = "Robinhood Chain · tap to copy"; }, 1600);
+    });
+  </script>
 </body>
 </html>
