@@ -11,10 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,400&family=Outfit:wght@300&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #100e0d;
       --ink: #f3ebe3;
-      --muted: #a3988c;
-      --line: rgba(243, 235, 227, 0.18);
+      --muted: #d8cfc6;
+      --line: rgba(243, 235, 227, 0.28);
     }
 
     * { box-sizing: border-box; }
@@ -22,7 +21,7 @@
     html, body {
       margin: 0;
       min-height: 100%;
-      background: var(--bg);
+      background: #100e0d;
       color: var(--ink);
     }
 
@@ -30,26 +29,61 @@
       min-height: 100dvh;
       font-family: "Outfit", system-ui, sans-serif;
       font-weight: 300;
-      display: grid;
-      place-items: center;
-      padding: 32px 28px 88px;
+      overflow: hidden;
     }
 
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      max-width: 100%;
+    .film {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #100e0d;
+      z-index: 0;
     }
+
+    .shade {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(16, 14, 13, 0.18) 0%, rgba(16, 14, 13, 0.05) 42%, rgba(16, 14, 13, 0.55) 100%);
+    }
+
+    .inquire {
+      position: fixed;
+      left: 28px;
+      bottom: 24px;
+      z-index: 2;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+    }
+
+    .inquire span { border-bottom: 1px solid transparent; }
+
+    .inquire:hover,
+    .inquire:focus-visible { color: var(--ink); }
+
+    .inquire:hover span,
+    .inquire:focus-visible span { border-bottom-color: var(--line); }
 
     .mark {
+      position: fixed;
+      right: 28px;
+      bottom: 18px;
+      z-index: 2;
       margin: 0;
       font-family: "Bodoni Moda", "Didot", "Bodoni MT", serif;
       font-weight: 500;
-      font-size: clamp(88px, 18vw, 188px);
+      font-size: clamp(42px, 7vw, 72px);
       letter-spacing: -0.035em;
       line-height: 0.86;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
     }
 
     .mark em {
@@ -59,13 +93,20 @@
     }
 
     .contract {
-      margin: 28px 0 0;
-      max-width: min(92vw, 520px);
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%);
+      z-index: 2;
+      margin: 0;
+      max-width: min(52vw, 420px);
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 300;
       letter-spacing: 0.02em;
-      line-height: 1.5;
+      line-height: 1.45;
+      text-align: center;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
     }
 
     .contract button {
@@ -82,65 +123,102 @@
     }
 
     .contract button:hover,
-    .contract button:focus-visible {
-      color: var(--ink);
-    }
+    .contract button:focus-visible { color: var(--ink); }
 
     .contract .hint {
       display: block;
-      margin-top: 8px;
-      font-size: 11px;
+      margin-top: 6px;
+      font-size: 10px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
     }
 
-    .inquire {
+    .sound {
+      position: fixed;
+      top: 22px;
+      right: 28px;
+      z-index: 2;
+      border: 0;
+      background: none;
+      color: var(--muted);
+      font: inherit;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+    }
+
+    .sound:hover,
+    .sound:focus-visible { color: var(--ink); }
+
+    .credit {
       position: fixed;
       left: 28px;
-      bottom: 24px;
+      top: 22px;
+      z-index: 2;
       color: var(--muted);
-      font-size: 12px;
-      font-weight: 300;
-      letter-spacing: 0.06em;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       text-decoration: none;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
     }
 
-    .inquire span {
-      border-bottom: 1px solid transparent;
-    }
+    .credit:hover,
+    .credit:focus-visible { color: var(--ink); }
 
-    .inquire:hover,
-    .inquire:focus-visible {
-      color: var(--ink);
-    }
-
-    .inquire:hover span,
-    .inquire:focus-visible span {
-      border-bottom-color: var(--line);
-    }
-
-    @media (max-width: 520px) {
-      .inquire { left: 28px; right: 28px; }
-      .contract { margin-top: 22px; font-size: 12px; }
+    @media (max-width: 720px) {
+      .contract {
+        left: 28px;
+        right: 28px;
+        bottom: 92px;
+        max-width: none;
+        transform: none;
+      }
+      .mark { right: 20px; bottom: 64px; }
+      .inquire { left: 20px; bottom: 20px; }
     }
   </style>
 </head>
 <body>
-  <div class="hero">
-    <h1 class="mark">SX<em>SI</em></h1>
-    <p class="contract">
-      <button type="button" id="ca" data-address="4rLgnFcuADTS2VD7sGxQjoiajbZjYZ411nF7gm7kpump">4rLgnFcuADTS2VD7sGxQjoiajbZjYZ411nF7gm7kpump</button>
-      <span class="hint" id="hint">Solana · tap to copy</span>
-    </p>
-  </div>
+  <video class="film" id="film" autoplay muted loop playsinline preload="auto" poster="">
+    <source src="https://claudia.gallery/films/escape-velocity/loop.mp4" type="video/mp4" />
+  </video>
+  <div class="shade" aria-hidden="true"></div>
+  <a class="credit" href="https://claudia.gallery/escape-velocity/" target="_blank" rel="noopener">Escape Velocity</a>
+  <button class="sound" type="button" id="sound">Sound off</button>
+  <p class="contract">
+    <button type="button" id="ca" data-address="4rLgnFcuADTS2VD7sGxQjoiajbZjYZ411nF7gm7kpump">4rLgnFcuADTS2VD7sGxQjoiajbZjYZ411nF7gm7kpump</button>
+    <span class="hint" id="hint">Solana · tap to copy</span>
+  </p>
+  <h1 class="mark">SX<em>SI</em></h1>
   <a class="inquire" href="mailto:SXSI123@protonmail.com?subject=SXSI%20inquiry">Inquiries <span>SXSI123@protonmail.com</span></a>
   <script>
+    const film = document.getElementById("film");
+    const sound = document.getElementById("sound");
     const btn = document.getElementById("ca");
     const hint = document.getElementById("hint");
+
+    const start = () => {
+      film.muted = true;
+      const play = film.play();
+      if (play && play.catch) play.catch(() => {});
+    };
+    start();
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) start();
+    });
+
+    sound.addEventListener("click", () => {
+      film.muted = !film.muted;
+      sound.textContent = film.muted ? "Sound off" : "Sound on";
+      if (!film.muted) film.play().catch(() => {});
+    });
+
     btn.addEventListener("click", async () => {
-      const address = btn.dataset.address;
       try {
-        await navigator.clipboard.writeText(address);
+        await navigator.clipboard.writeText(btn.dataset.address);
         hint.textContent = "Copied";
       } catch (err) {
         hint.textContent = "Select and copy";
